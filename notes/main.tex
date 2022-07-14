@@ -1,0 +1,292 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2021_conference,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+  
+\usepackage{hyperref}
+\usepackage{url}
+
+\usepackage{algorithm, algpseudocode}
+% \usepackage{algorithmic}
+% \usepackage{algorithm2e}
+\usepackage{relsize} %SEB: feel free to revert, I think the font looked a bit too big otherwise
+\newcommand{\algname}[1]{{\sf\green\relscale{0.90}#1}\xspace}
+\newcommand{\algnameS}[1]{{\sf\green\relscale{0.90}#1}\xspace}
+\newcommand{\dataname}[1]{{\tt\color{blue}#1}\xspace}
+\newcommand{\sybg}[1]{{\sf\green#1}\xspace}  % new added symbol green
+\newcommand{\sybr}[1]{{\sf\red#1}\xspace}  % new added symbol green
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{makecell}
+\newcommand{\eqdef}{\coloneqq}
+\usepackage{ulem}
+
+\usepackage{subcaption}
+
+\usepackage{nicefrac}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathcal{C}}
+%%%%% PETER ADDED MACROS %%%%%
+\usepackage{tcolorbox}
+\usepackage{pifont}
+% \definecolor{mydarkgreen}{RGB}{5,81,23}
+\definecolor{mydarkgreen}{RGB}{39,130,67}
+\definecolor{mydarkred}{RGB}{192,25,25}
+\newcommand{\green}{\color{mydarkgreen}}
+\newcommand{\red}{\color{mydarkred}}
+\newcommand{\cmark}{\green\ding{51}}%
+\newcommand{\xmark}{\red\ding{55}}%
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage{bm}
+
+\usepackage[colorinlistoftodos,bordercolor=orange,backgroundcolor=orange!20,linecolor=orange,textsize=scriptsize]{todonotes}
+\newcommand{\kai}[1]{\todo[inline]{{\textbf{Kai:} \emph{#1}}}}
+
+\title{A Unified Theory of Error Feedback and Variance Reduction for Non-Convex Optimization}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\author{Kai Yi\\
+   King Abdullah University of Science and Technology (KAUST), Thuwal, Saudi Arabia\\
+   \texttt{kai.yi@kaust.edu.sa}
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+% \newcommand{\h0}{{\green $h^{0}$}}
+% \newcommand{\ht}{{\green $h^{t}$}}
+% \newcommand{\mt}{{\red $m^{t}$}}
+% \DeclareMathOperator*{\argmin}{arg\,min}
+% \DeclareMathOperator*{\minimize}{\mathrm{minimize}}
+\newcommand{\sqnorm}[1]{\left\| #1 \right\|^2}
+\newcommand{\Exp}[1]{\mathbb{E}\!\left[ #1 \right]}
+\newcommand{\oma}{\omega_{\mathrm{av}}}
+\newcommand{\gv}{v} 
+
+\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}  
+In this project, we extend EF-BV to non-convex setting. 
+\end{abstract}
+
+\tableofcontents
+% \newpage
+
+% \section{Method}
+% We conside the standard federated optimization problem which has the following form
+
+% \begin{equation}
+%    \min_{x\in\R^d} f(x) = \frac{1}{n}\sum_{i=1}^n f_i (x),
+% \end{equation}
+
+% where $n$ is the number of clients. $f_i$ is the local optimization function at client $i$.
+
+% \subsection{Assumptions}
+
+% \paragraph{Polyak-Łojasiewicz Condition.} 
+
+% \begin{equation}
+%    f(x) - f^{\inf} \leq \frac{1}{2\mu} \| \nabla f(x)\|^2, \quad \forall x\in\R^d
+% \end{equation}
+
+% \subsection{Algorithm Description}
+% \begin{algorithm}[!htbp]
+% \caption{EF-BV for single node}\label{alg:efbv_1}
+% \begin{algorithmic}
+% \Require stepsize $\gamma>0$, initial iterate $x^{0} \in \R^{d}$; initial shift {$h^0$} $\in \R^{d}$, \sybg{$\lambda\in (0, 1]$}, \sybr{$\nu \in (0,1]$} 
+% \For{t = 0, 1, 2, $\cdots$}
+%     \State Compute the gradient: $\nabla f\left(x^{t}\right)$
+%     \State Compress shifted gradient: {$m^{t}$} $=\mathcal{C}(\nabla f\left(x^{t}\right)-$ {$h^{t})$}
+%     \State Compute gradient estimator: $g^{t}=$ {$h^{t}$} + \sybr{$\nu$}{$m^{t}$}
+%     \State Take proximal SGD step: $x^{t+1}=\operatorname{prox}_{\gamma R}\left(x^{t}-\gamma g^{t}\right)$
+%     \State Update the shift: {$h^{t+1}$}={$h^{t}$} $+$ \sybg{$\lambda$} {$m^{t}$}
+% \EndFor 
+% \end{algorithmic}
+% \end{algorithm}
+
+\bibliography{mybib}
+\bibliographystyle{iclr2021_conference}
+
+\newpage
+\appendix
+\section{Appendix}
+$g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \lambda \C(\nabla f_i (x^t) - h_i^t)$
+
+\begin{proof}
+   We first bound $\E\left[\|g_i^{t+1} - \nabla f_i(x^{t+1})\|^2\right]$. 
+
+   Given any compressor $\mathcal{C}$, we can do a {\it bias-variance decomposition} of the compression error. That means, for every $x\in\mathbb{R}^d$,
+
+   \begin{equation}
+    \mathbb{E}\big[\|\mathcal{C}(x)-x\|^2\big] = {\underbrace{\big\| \mathbb{E}[\mathcal{C}(x)]-x\big\|}_{\text{bias}}}^2 + \underbrace{\mathbb{E}\Big[\big\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\big\|^2\Big]}_{\text{variance}}.\label{eqbiva}
+    \end{equation}
+
+   For every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$, 
+   \begin{align*}
+      \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} &=\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) \Big) }}\\
+      &\stackrel{(\ref{eqbiva})}{=}\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
+      &\quad+\nu^2\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big( \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)-\Exp{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) } \Big) }}\\
+      &\leq \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
+      &\quad+\nu^2 \frac{\oma}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^t },
+   \end{align*}
+   where the last inequality follows from Eqn.~7 in \cite{condat2022ef}. In addition,
+ 
+   \begin{align*}
+      &\left\|\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\|\\
+      &\quad \leq \left\|\frac{1}{n}\sum_{i=1}^n \Big(\nu\big(h_i^{t}-\nabla f_i(x^t)\big) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\|\\
+      &\quad\quad + (1-\nu)\left\|\frac{1}{n}\sum_{i=1}^n \big(h_i^{t}-\nabla f_i(x^t)\big)\right\|\\
+      &\quad \leq \frac{\nu}{n}\sum_{i=1}^n\left\|h_i^{t}-\nabla f_i(x^t)+ \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\|\\
+      &\quad\quad + \frac{1-\nu}{n}\sum_{i=1}^n \left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
+      &\quad \leq  \frac{\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|+ \frac{1-\nu}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|\\
+      & \quad = \frac{1-\nu+\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|.
+   \end{align*}
+   where the last step is obtained by using the definition of the general compressor. 
+
+   Therefore, 
+   \begin{align*}
+   \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)} \leq \frac{(1-\nu+\nu\eta)^2}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}},
+   \end{align*}
+   and, 
+   conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+   \begin{align*}
+   \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} &\leq 
+   \left((1-\nu+\nu\eta)^2+\nu^2\oma\right)\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.
+   \end{align*}
+
+   Using the Tower property and we obtain the unconditioned term,
+   \begin{align*}
+      \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} &\leq 
+      \left((1-\nu+\nu\eta)^2+\nu^2\oma\right)\frac{1}{n}\sum_{i=1}^n \Exp{\sqnorm{\nabla f_i(x^t)-h_i^{t}}}.
+      \end{align*}
+    
+   Since we have the property \citep[Lemma 4]{ric21}, for every $t\geq 0$,
+   \begin{align}
+   f(x^{t+1}) -f^{\inf} &\leq f(x^t)  -f^{\inf} -\frac{\gamma}{2} \sqnorm{\nabla f(x^t)} +\frac{ \gamma }{2}\sqnorm{g^{t+1}-\nabla f(x^t)} + \left(\frac{ L}{2}-\frac{1}{2\gamma}\right)\sqnorm{x^{t+1}-x^t}.\notag
+   \end{align}
+
+   Thus, for every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+    \begin{align*}
+   \Exp{f(x^{t+1}) -f^{\inf}} &\leq \Exp{f(x^t)  -f^{\inf}} -\frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}}\notag\\
+   &\quad+ \left(\frac{ L}{2}-\frac{1}{2\gamma}\right)\Exp{\sqnorm{x^{t+1}-x^t}}  + \frac{ \gamma }{2}\Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} .\notag
+   \end{align*}
+   
+   Now, let us study the control variates $h_i^t$. Let $s>0$. Using the Peter--Paul inequality $\|a+b\|^2 \leq (1+s) \|a\|^2 + (1+s^{-1}) \|b\|^2$, for any vectors $a$ and $b$, 
+   we have, for every $t\geq 0$ and $i\in\mathcal{I}_n$,
+   \begin{align*}
+   \sqnorm{\nabla f_i(x^{t+1})-h_i^{t+1}}&=\sqnorm{h_i^{t}-\nabla f_i(x^{t+1}) +\lambda \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)  }\\
+   &\leq (1+s)\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)  }\\ 
+   &\quad+(1+s^{-1})\sqnorm{\nabla f_i(x^{t+1})-\nabla f_i(x^{t})}\\
+   &\leq (1+s)\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)  } \\
+   &\quad+(1+s^{-1})L_i^2\sqnorm{x^{t+1}-x^{t}}.
+   \end{align*}
+   Moreover,  conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$, 
+   \begin{align*}
+   \Exp{\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)  }}&=\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} }\\
+   &\quad+\lambda^2\Exp{\sqnorm{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)-\Exp{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) }  }}\\
+   &\leq\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} }\\
+   &\quad+\lambda^2\omega \sqnorm{\nabla f_i(x^t)-h_i^t}.
+   \end{align*}
+   In addition,
+   \begin{align*}
+   \left\|h_i^{t}-\nabla f_i(x^{t}) +\lambda \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\|& \leq \left\|\lambda\big(h_i^{t}-\nabla f_i(x^{t})\big) +\lambda \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\|\notag\\
+   &\quad + (1-\lambda)\left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
+   &\leq  \lambda\eta\left\|\nabla f_i(x^t)-h_i^{t}\right\|+ (1-\lambda)\left\|\nabla f_i(x^t)-h_i^{t}\right\|\notag\\
+   &=(1-\lambda+\lambda\eta)\left\|\nabla f_i(x^t)-h_i^t\right\|.
+   \end{align*}
+   Therefore, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$, 
+   \begin{align*}
+   \Exp{\sqnorm{h_i^{t}-\nabla f_i(x^{t}) +\lambda \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)  }}\leq\big((1-\lambda+\lambda\eta)^2+\lambda^2\omega\big) \sqnorm{\nabla f_i(x^t)-h_i^t}
+   \end{align*}
+   and
+   \begin{align*}
+   \Exp{\sqnorm{\nabla f_i(x^{t+1})-h_i^{t+1}}}&\leq (1+s)\big((1-\lambda+\lambda\eta)^2+\lambda^2\omega\big) \sqnorm{\nabla f_i(x^{t})-h_i^{t}}\\
+   &\quad+(1+s^{-1})L_i^2\Exp
+   {\sqnorm{x^{t+1}-x^{t}}},
+   \end{align*}
+   so that
+   \begin{align*}
+   \Exp{\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^{t+1})-h_i^{t+1}}}&
+   \leq (1+s)\big((1-\lambda+\lambda\eta)^2+\lambda^2\omega\big) \frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\\
+   &\quad+(1+s^{-1})\tilde{L}^2\Exp
+   {\sqnorm{x^{t+1}-x^{t}}}.
+   \end{align*}
+
+   Let $\theta>0$; its value will be set to $\theta^\star$ later on. We introduce the Lyapunov function, for every $t\geq 0$,
+   \begin{equation*}
+   \Psi^t \eqdef f(x^t)-f^{\inf} + \frac{\gamma}{2\theta}  \frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.
+   \end{equation*}
+   Hence, for every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$, we have
+   \begin{align}
+   \Exp{\Psi^{t+1}} &\leq \Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}}\notag \\
+   &\quad +\frac{ \gamma }{2\theta}\Big( \theta\big((1-\nu+\nu\eta)^2+\nu^2\oma\big)\notag+(1+s)\big((1-\lambda+\lambda\eta)^2+\lambda^2\omega\big)
+   \Big) \frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\label{eqq1}\\
+   &\quad+ \left(\frac{ L}{2}-\frac{1}{2\gamma}+\frac{\gamma}{2\theta}(1+s^{-1})\tilde{L}^2\right)\!\Exp{\sqnorm{x^{t+1}-x^t}}.\notag
+   \end{align}
+   Making use of $r$ and $r_{\mathrm{av}}$ and setting $\theta = s(1+s)\frac{r}{r_{\mathrm{av}}}$, 
+   we can rewrite the above equation as:
+   \begin{align*}
+   \Exp{\Psi^{t+1}} &\leq \Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}} +\frac{ \gamma }{2\theta}\Big( \theta r_{\mathrm{av}}
+   +(1+s)r
+   \Big) \frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\\
+   &\quad+ \left(\frac{ L}{2}-\frac{1}{2\gamma}+\frac{\gamma}{2\theta}(1+s^{-1})\tilde{L}^2\right)\!\Exp{\sqnorm{x^{t+1}-x^t}}\\
+   &=\Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}} +\frac{ \gamma }{2\theta} (1+s)^2 
+   \frac{r}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\\
+   &\quad+ \left(\frac{ L}{2}-\frac{1}{2\gamma}+\frac{\gamma}{2s^2}\frac{r_{\mathrm{av}}}{r}\tilde{L}^2\right)\!\Exp{\sqnorm{x^{t+1}-x^t}}.
+   \end{align*}
+   We now choose $\gamma$ small enough so that 
+   \begin{equation}
+   L-\frac{1}{\gamma}+\frac{\gamma}{s^2}\frac{r_{\mathrm{av}}}{r}\tilde{L}^2 \leq 0.\label{eqgreg}
+   \end{equation}
+   A sufficient condition for \eqref{eqgreg} to hold is \citep[Lemma 5]{ric21}:
+   \begin{equation}
+   0<\gamma \leq \frac{1}{L+\tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.\label{eqgamfek}
+   \end{equation}
+   Then, assuming that \eqref{eqgamfek} holds, we have, for every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+   \begin{align*}
+   \Exp{\Psi^{t+1}} &\leq \Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}} +\frac{ \gamma }{2\theta} (1+s)^2 
+   \frac{r}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\\
+   &\leq \max\big(1-\gamma\mu,(1+s)^2 r\big)  \Psi^t.
+   \end{align*}
+
+
+   We see that $s$ must be small enough so that $(1+s)^2 r <1$; this is the case with 
+   $s=s^\star$, so that $(1+s^\star)^2 r = \frac{r+1}{2}<1$. 
+   Therefore, we set $s=s^\star$, and, accordingly, $\theta=\theta^\star$. Then, for every $t\geq 0$,
+   conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+   \begin{align*}
+   \Exp{\Psi^{t+1}} 
+   &\leq \max\big(1-\gamma\mu, {\frac{r+1}{2}}\big) \Psi^t.
+   \end{align*}
+
+   \end{proof}
+\end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.1.24)  16 JUL 2022 12:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.1.24)  16 JUL 2022 17:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,38 +712,53 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 122.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
-) [2] (./main.bbl) [3] [4]
-Overfull \hbox (21.67809pt too wide) detected at line 283
+) [2] (./main.bbl [3]) [4]
+Overfull \hbox (16.25838pt too wide) detected at line 263
+[][][][][]
+ []
+
+
+Overfull \hbox (16.11438pt too wide) detected at line 275
+[][][][][]
+ []
+
+
+Overfull \hbox (3.33885pt too wide) detected at line 279
+[]
+ []
+
+[5]
+Overfull \hbox (21.67809pt too wide) detected at line 297
 []
  []
 
 
-Overfull \hbox (19.66772pt too wide) detected at line 306
+Overfull \hbox (19.66772pt too wide) detected at line 320
 []
  []
 
 
-Overfull \hbox (30.64528pt too wide) detected at line 342
+Overfull \hbox (30.64528pt too wide) detected at line 356
 []
  []
 
-[5] [6] [7] (./main.aux)
+[6] [7] [8] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 53188D06D59390C2E856D4A2E5B24B64;1859.
  ) 
 Here is how much of TeX's memory you used:
- 26950 strings out of 478287
- 504104 string characters out of 5846764
- 794284 words of memory out of 5000000
- 44619 multiletter control sequences out of 15000+600000
- 494783 words of font info for 77 fonts, out of 8000000 for 9000
+ 26956 strings out of 478287
+ 504158 string characters out of 5846764
+ 793412 words of memory out of 5000000
+ 44621 multiletter control sequences out of 15000+600000
+ 495861 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,15n,104p,479b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,15n,104p,479b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 184608 bytes).
+Output written on main.pdf (8 pages, 185960 bytes).
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 41 named destinations out of 1000 (max. 500000)
+ 257 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

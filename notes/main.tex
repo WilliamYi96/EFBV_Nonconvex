@@ -188,17 +188,27 @@ Using Jensen's inequality, we have $L\leq \frac{1}{n}\sum_{i}L_i$. Let $\tilde{L
    For every $t\geq 0$, define the Lyapunov function
 
    \begin{equation}
-      \Psi^{t}:=f\left(x^{t}\right)-f^{\inf}+\frac{\gamma}{2 \theta^{\star}} \frac{1}{n} \sum_{i=1}^{n}\left\|\nabla f_{i}\left(x^{t}\right)-h_{i}^{t}\right\|^{2}
+      \Psi^{t}:=f\left(x^{t}\right)-f^{\inf}+\frac{\gamma}{2 \theta} \frac{1}{n} \sum_{i=1}^{n}\left\|\nabla f_{i}\left(x^{t}\right)-h_{i}^{t}\right\|^{2}
       \end{equation}
    
    Fix $T\geq 1$ and let $\hat{x}^T$ be chosen from the iterates $x^0, x^1, \cdots, x^{T-1}$ uniformly at random. Then 
 
    \begin{equation}
-      \mathbb{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right] \leq \frac{2\left(f\left(x^{0}\right)-f^{i n f}\right)}{\gamma T}+\frac{\mathbb{E}\left[G^{0}\right]}{\theta T},
+      \mathbb{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right] \leq \frac{2\left(f\left(x^{0}\right)-f^{\inf}\right)}{\gamma T}+\frac{\mathbb{E}\left[G^{0}\right]}{\theta T},
       \end{equation}
 
-   where $G^0=xxxx$.
+   where $G^0=\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^0) - h_i^0}$.
 \end{theorem}
+
+Similar to \algname{EF-BV}, we define the optimal values for the scaling parameters $\lambda, \nu$:
+$$
+\lambda^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega}, 1\right), \quad \nu^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega_{\mathrm{av}}}, 1\right) .
+$$
+Given $\lambda \in(0,1]$ and $\nu \in(0,1]$, we define for convenience
+$$
+r:=(1-\lambda+\lambda \eta)^{2}+\lambda^{2} \omega, \quad r_{\mathrm{av}}:=(1-\nu+\nu \eta)^{2}+\nu^{2} \omega_{\mathrm{av}} .
+$$
+as well as $s^{\star}:=\sqrt{\frac{1+r}{2 r}}-1$ and $\theta^{\star}:=s^{\star}\left(1+s^{\star}\right) \frac{r}{r_{\text {av }}}$.
 
 \begin{theorem}[Linear Convergence under PL condition]\label{thm:main_pl}
    Suppose Assumption~\ref{assump:smooth} and PL assumption~\ref{assump:pl} are satisfied. Similarly, for every $t\geq 0$, 
@@ -242,32 +252,36 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
    %  \mathbb{E}\big[\|\mathcal{C}(x)-x\|^2\big] = {\underbrace{\big\| \mathbb{E}[\mathcal{C}(x)]-x\big\|}_{\text{bias}}}^2 + \underbrace{\mathbb{E}\Big[\big\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\big\|^2\Big]}_{\text{variance}}.\label{eqbiva}
    %  \end{equation}
    For every $t\geq 0$, define $W^t = \{x^t, h^t, (h_i^t)_{i=1}^n\}$,
-   \begin{align*}
+   \begin{equation}\label{eq0001}
+   \begin{aligned}
       \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)} | W^t} &=\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) \Big) } | W^t}\\
-      &\stackrel{(\ref{eqbiva})}{=}\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
-      &\quad+\nu^2\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big( \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)-\Exp{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) } \Big) }}\\
-      &\leq \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
+      &\stackrel{(\ref{eqbiva})}{=}\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big) | W^t} \\
+      &\quad+\nu^2\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big( \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)-\Exp{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) } \Big) } | W^t}\\
+      &\leq \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big) | W^t}\\
       &\quad+\nu^2 \frac{\oma}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^t },
-   \end{align*}
+   \end{aligned}      
+   \end{equation}
    where the last inequality follows from Eqn.~7 in \cite{condat2022ef}. In addition, using Jensen's inequality and the definition of general compressor (Eqn.~\ref{def:compressors}), 
  
    % \kai{TODO: check where W^t can be omit from EF21-Lemma2}
-   \begin{align*}
-      &\left\|\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\|\\
-      &\quad \leq \left\|\frac{1}{n}\sum_{i=1}^n \Big(\nu\big(h_i^{t}-\nabla f_i(x^t)\big) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\| + (1-\nu)\left\|\frac{1}{n}\sum_{i=1}^n \big(h_i^{t}-\nabla f_i(x^t)\big)\right\|\\
-      &\quad \leq \frac{\nu}{n}\sum_{i=1}^n\left\|h_i^{t}-\nabla f_i(x^t)+ \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\| + \frac{1-\nu}{n}\sum_{i=1}^n \left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
+   \begin{equation}\label{eq0002}
+   \begin{aligned}
+      &\left\|\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big) | W^t\right\|\\
+      &\quad \leq \left\|\frac{1}{n}\sum_{i=1}^n \Big(\nu\big(h_i^{t}-\nabla f_i(x^t)\big) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big) | W^t\right\| + (1-\nu)\left\|\frac{1}{n}\sum_{i=1}^n \big(h_i^{t}-\nabla f_i(x^t)\big)\right\|\\
+      &\quad \leq \frac{\nu}{n}\sum_{i=1}^n\left\|h_i^{t}-\nabla f_i(x^t)+ \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} | W^t\right\| + \frac{1-\nu}{n}\sum_{i=1}^n \left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
       &\quad \leq  \frac{\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|+ \frac{1-\nu}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|\\
       & \quad = \frac{1-\nu+\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|.
-   \end{align*}
-
+   \end{aligned}
+   \end{equation}
    Therefore, 
    \begin{align*}
-   \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)} \leq \frac{(1-\nu+\nu\eta)^2}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}},
+   \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big) | W^t} \leq \frac{(1-\nu+\nu\eta)^2}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.
    \end{align*}
-   and, 
-   conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+
+   Putting Eq.~\ref{eq0002} into Eq.~\ref{eq0001}, we have 
+   
    \begin{align*}
-   \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} &\leq 
+   \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}| W^t} &\leq 
    \left((1-\nu+\nu\eta)^2+\nu^2\oma\right)\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.
    \end{align*}
 

@@ -1,1 +1,12 @@
-\contentsline {section}{\numberline {A}Appendix}{2}{appendix.A}%
+\contentsline {section}{\numberline {1}Background}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Problem Definition}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}General Compressors}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Average Variance of Compressors}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}EF-BV}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Convergence Analysis for Non-Convex Setting}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Assumptions}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Main Theorem}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {A}Appendix}{4}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Missing proofs}{4}{subsection.A.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}Missing proof of Theorem\nobreakspace {}\ref {thm:main}}{4}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.2}Missing proof of Theorem\nobreakspace {}\ref {thm:main_pl}}{7}{subsubsection.A.1.2}%

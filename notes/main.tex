@@ -96,28 +96,117 @@
 
 
 \begin{abstract}  
-In this project, we extend EF-BV to non-convex setting. 
+In this project, we first extend EF-BV~\cite{condat2022ef} to non-convex setting and consider the special case under PL inequality. Then we extend EF-BV to pratical federated learning scenarios including variance reduction, partial participation, bidirectional compression.  
 \end{abstract}
 
 \tableofcontents
-% \newpage
+\newpage
 
-% \section{Method}
-% We conside the standard federated optimization problem which has the following form
+\section{Background}
+\subsection{Problem Definition}
+We consider the standard federated optimization problem
 
-% \begin{equation}
-%    \min_{x\in\R^d} f(x) = \frac{1}{n}\sum_{i=1}^n f_i (x),
-% \end{equation}
+\begin{equation}
+   \min_{x\in\mathbb{R}^d} f(x) = \frac{1}{n}\sum_{i=1}^n f_i (x),
+\end{equation}
 
-% where $n$ is the number of clients. $f_i$ is the local optimization function at client $i$.
+where $n$ is the number of clients. $f_i$ is the local optimization function at client $i$ of the form 
 
-% \subsection{Assumptions}
+\begin{equation}
+   f_i(x) = \frac{1}{m} \sum_{j=1}^m f_{ij} (x),
+\end{equation}
 
-% \paragraph{Polyak-Łojasiewicz Condition.} 
+where $m$ is the number of datapoints at client $i$. 
 
-% \begin{equation}
-%    f(x) - f^{\inf} \leq \frac{1}{2\mu} \| \nabla f(x)\|^2, \quad \forall x\in\R^d
-% \end{equation}
+\subsection{General Compressors}
+Based on bias-variance decomposition of the compression error (\algname{EF-BV}~\cite{condat2022ef}, Sec 2.3); for every $x\in \R^d$,
+
+\begin{equation}
+   \mathbb{E}\big[\|\mathcal{C}(x)-x\|^2\big] = {\underbrace{\big\| \mathbb{E}[\mathcal{C}(x)]-x\big\|}_{\text{bias}}}^2 + \underbrace{\mathbb{E}\Big[\big\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\big\|^2\Big]}_{\text{variance}},\label{eqbiva}
+   \end{equation}
+
+where the two terms at the right hand side satisfies
+
+\begin{equation}\label{def:compressors}
+   \begin{aligned}
+      \|\mathbb{E}[\mathcal{C}(x)]-x\| &\leq \eta\|x\|,\\
+      \mathbb{E}\left[\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\|^{2}\right] &\leq \omega\|x\|^{2}.
+   \end{aligned}
+\end{equation}
+
+$\eta$ and $\omega$ is interpreted as the relative bias and variance controllers of the general compressor. Unbiased compressors and contractive biased compressors are all special case of this general compressor. More details could refer to~\algname{EF-BV}~\cite{condat2022ef}, Sec 2.3.
+
+\subsection{Average Variance of Compressors}
+Given $n$ compressors $\C_i$, the average relative variance~\cite{condat2022ef} $\omega_{av}$ is defined as: for every $x_i\in \R^d$, 
+
+\begin{equation}
+   \left.\mathbb{E}\left[\left\|\frac{1}{n} \sum_{i=1}^{n}\left(\mathcal{C}_{i}\left(x_{i}\right)-\mathbb{E}\left[\mathcal{C}_{i}\left(x_{i}\right)\right]\right)\right\|^{2}\right]\right] \leq \frac{\omega_{\mathrm{av}}}{n} \sum_{i=1}^{n}\left\|x_{i}\right\|^{2}.
+   \end{equation}
+
+The property of this bound from \algname{EF-BF}: $\omega_{\mathrm{av}}\leq \omega$ and can be much smaller than $\omega$. When $\C_i$ are mutually independent, $\omega_{\mathrm{av}} = \omega / n$.
+
+% \kai{TODO: understand the independence here.}
+
+\subsection{EF-BV}
+The key part of \algname{EF-BV}~\cite{condat2022ef} is that the gradient estimator is updated By
+
+\begin{equation}
+   g_i^t = h_i^t + \sybg{\nu} \C(\nabla f_i (x^t) - h_i^t)
+\end{equation}
+
+where the control variates are updated as 
+
+\begin{equation}
+   h_i^{t+1} = h_i^t + \sybr{\lambda} \C(\nabla f_i (x^t) - h_i^t).
+\end{equation}
+
+More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
+
+\section{Convergence Analysis for Non-Convex Setting}
+\subsection{Assumptions}
+\begin{assumption}[Smoothness and Lower Bound]\label{assump:smooth}
+   Every $f_i$ is $L_i$-smooth and $f$ is $L$-smooth. $f^{\inf}\eqdef \inf_{x\in \R^d} f(x) > -\infty$.
+\end{assumption}
+
+Using Jensen's inequality, we have $L\leq \frac{1}{n}\sum_{i}L_i$. Let $\tilde{L}\eqdef (\frac{1}{n}\sum_{i=1}^2)^{1/2}$. Using the arithmetic-quadratic mean inequality, $\frac{1}{n}\sum_{i}L_i \leq \tilde{L}$.
+
+\begin{assumption}[Polyak-Łojasiewicz Condition]\label{assump:pl}
+   
+   There exists $\mu>0$ such that 
+
+   \begin{equation}
+      f(x) - f^{\inf} \leq \frac{1}{2\mu} \| \nabla f(x)\|^2, \quad \forall x\in\R^d
+   \end{equation}
+\end{assumption}
+
+\subsection{Main Theorem}
+\begin{theorem}[Linear Convergence in the non-convex setting]\label{thm:main}
+   Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$, choosing the stepsize 
+   
+   $$0< \gamma \leq \frac{1}{L + \tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.$$
+
+   For every $t\geq 0$, define the Lyapunov function
+
+   \begin{equation}
+      \Psi^{t}:=f\left(x^{t}\right)-f^{\inf}+\frac{\gamma}{2 \theta^{\star}} \frac{1}{n} \sum_{i=1}^{n}\left\|\nabla f_{i}\left(x^{t}\right)-h_{i}^{t}\right\|^{2}
+      \end{equation}
+   
+   Fix $T\geq 1$ and let $\hat{x}^T$ be chosen from the iterates $x^0, x^1, \cdots, x^{T-1}$ uniformly at random. Then 
+
+   \begin{equation}
+      \mathbb{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right] \leq \frac{2\left(f\left(x^{0}\right)-f^{i n f}\right)}{\gamma T}+\frac{\mathbb{E}\left[G^{0}\right]}{\theta T},
+      \end{equation}
+
+   where $G^0=xxxx$.
+\end{theorem}
+
+\begin{theorem}[Linear Convergence under PL condition]\label{thm:main_pl}
+   Suppose Assumption~\ref{assump:smooth} and PL assumption~\ref{assump:pl} are satisfied. Similarly, for every $t\geq 0$, 
+
+   \begin{equation}
+      \mathbb{E}\left[\Psi^{t}\right] \leq\left(\max \left(1-\gamma \mu, \frac{r+1}{2}\right)\right)^{t} \Psi^{0}.
+      \end{equation}
+\end{theorem}
 
 % \subsection{Algorithm Description}
 % \begin{algorithm}[!htbp]
@@ -140,37 +229,36 @@ In this project, we extend EF-BV to non-convex setting.
 \newpage
 \appendix
 \section{Appendix}
+\subsection{Missing proofs}
+\subsubsection{Missing proof of Theorem~\ref{thm:main}}
 $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \lambda \C(\nabla f_i (x^t) - h_i^t)$
 
 \begin{proof}
-   We first bound $\E\left[\|g_i^{t+1} - \nabla f_i(x^{t+1})\|^2\right]$. 
+   We first bound $\E\left[\|g_i^{t+1} - \nabla f_i(x^{t})\|^2\right]$. 
 
-   Given any compressor $\mathcal{C}$, we can do a {\it bias-variance decomposition} of the compression error. That means, for every $x\in\mathbb{R}^d$,
-
-   \begin{equation}
-    \mathbb{E}\big[\|\mathcal{C}(x)-x\|^2\big] = {\underbrace{\big\| \mathbb{E}[\mathcal{C}(x)]-x\big\|}_{\text{bias}}}^2 + \underbrace{\mathbb{E}\Big[\big\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\big\|^2\Big]}_{\text{variance}}.\label{eqbiva}
-    \end{equation}
-
-   For every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$, 
+   Given any compressor $\mathcal{C}$, we can do a {\it bias-variance decomposition} of the compression error (see Eqn.~\ref{eqbiva}). 
+   % That means, for every $x\in\mathbb{R}^d$,
+   % \begin{equation}
+   %  \mathbb{E}\big[\|\mathcal{C}(x)-x\|^2\big] = {\underbrace{\big\| \mathbb{E}[\mathcal{C}(x)]-x\big\|}_{\text{bias}}}^2 + \underbrace{\mathbb{E}\Big[\big\|\mathcal{C}(x)-\mathbb{E}[\mathcal{C}(x)]\big\|^2\Big]}_{\text{variance}}.\label{eqbiva}
+   %  \end{equation}
+   For every $t\geq 0$, define $W^t = \{x^t, h^t, (h_i^t)_{i=1}^n\}$,
    \begin{align*}
-      \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)}} &=\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) \Big) }}\\
+      \Exp{\sqnorm{g^{t+1}-\nabla f(x^t)} | W^t} &=\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) \Big) } | W^t}\\
       &\stackrel{(\ref{eqbiva})}{=}\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
       &\quad+\nu^2\Exp{\sqnorm{\frac{1}{n}\sum_{i=1}^n \Big( \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)-\Exp{ \mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big) } \Big) }}\\
       &\leq \sqnorm{\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)}\\
       &\quad+\nu^2 \frac{\oma}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^t },
    \end{align*}
-   where the last inequality follows from Eqn.~7 in \cite{condat2022ef}. In addition,
+   where the last inequality follows from Eqn.~7 in \cite{condat2022ef}. In addition, using Jensen's inequality and the definition of general compressor (Eqn.~\ref{def:compressors}), 
  
+   % \kai{TODO: check where W^t can be omit from EF21-Lemma2}
    \begin{align*}
       &\left\|\frac{1}{n}\sum_{i=1}^n \Big(h_i^{t}-\nabla f_i(x^t) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\|\\
-      &\quad \leq \left\|\frac{1}{n}\sum_{i=1}^n \Big(\nu\big(h_i^{t}-\nabla f_i(x^t)\big) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\|\\
-      &\quad\quad + (1-\nu)\left\|\frac{1}{n}\sum_{i=1}^n \big(h_i^{t}-\nabla f_i(x^t)\big)\right\|\\
-      &\quad \leq \frac{\nu}{n}\sum_{i=1}^n\left\|h_i^{t}-\nabla f_i(x^t)+ \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\|\\
-      &\quad\quad + \frac{1-\nu}{n}\sum_{i=1}^n \left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
+      &\quad \leq \left\|\frac{1}{n}\sum_{i=1}^n \Big(\nu\big(h_i^{t}-\nabla f_i(x^t)\big) +\nu \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)} \Big)\right\| + (1-\nu)\left\|\frac{1}{n}\sum_{i=1}^n \big(h_i^{t}-\nabla f_i(x^t)\big)\right\|\\
+      &\quad \leq \frac{\nu}{n}\sum_{i=1}^n\left\|h_i^{t}-\nabla f_i(x^t)+ \Exp{\mathcal{C}_i^t\big(\nabla f_i(x^t)-h_i^t\big)}\right\| + \frac{1-\nu}{n}\sum_{i=1}^n \left\|h_i^{t}-\nabla f_i(x^t)\right\|\\
       &\quad \leq  \frac{\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|+ \frac{1-\nu}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|\\
       & \quad = \frac{1-\nu+\nu\eta}{n}\sum_{i=1}^n \left\|\nabla f_i(x^t)-h_i^{t}\right\|.
    \end{align*}
-   where the last step is obtained by using the definition of the general compressor. 
 
    Therefore, 
    \begin{align*}
@@ -274,19 +362,37 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
    Then, assuming that \eqref{eqgamfek} holds, we have, for every $t\geq 0$, conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
    \begin{align*}
    \Exp{\Psi^{t+1}} &\leq \Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}} +\frac{ \gamma }{2\theta} (1+s)^2 
-   \frac{r}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\\
-   &\leq \max\big(1-\gamma\mu,(1+s)^2 r\big)  \Psi^t.
+   \frac{r}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.\\
    \end{align*}
 
-
-   We see that $s$ must be small enough so that $(1+s)^2 r <1$; this is the case with 
-   $s=s^\star$, so that $(1+s^\star)^2 r = \frac{r+1}{2}<1$. 
-   Therefore, we set $s=s^\star$, and, accordingly, $\theta=\theta^\star$. Then, for every $t\geq 0$,
-   conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+   Using the Tower property, we have,
    \begin{align*}
-   \Exp{\Psi^{t+1}} 
-   &\leq \max\big(1-\gamma\mu, {\frac{r+1}{2}}\big) \Psi^t.
+      \Exp{\Psi^{t+1}} \leq \Exp{\Psi^t} - \frac{\gamma}{2}\Exp{\sqnorm{\nabla f(x^t)}}.
    \end{align*}
+
+   By summing up inequalities for $t=0, \cdots, T-1$, we get 
+   \begin{align*}
+      0 \leq \Exp{\Psi^(T)} \leq \Exp{\Psi^0} - \frac{\gamma}{2} \sum_{t=0}^{T-1} \Exp{\sqnorm{\nabla f(x^t)}}.
+   \end{align*}
+
+   % We define $\detal^t \eqdef \Exp{f(x^t) - f^{\inf}}, s^t \eqdef \Exp{}$  
+   Multiplying both sides by $\frac{2}{\gamma T}$, after rearranging we get
+   \begin{align*}
+      \sum_{t=0}^{T-1} \frac{1}{T}\Exp{\sqnorm{\nabla f(x^t)}} \leq \frac{2}{\gamma T} \Psi(0),
+   \end{align*}
+
+   % We see that $s$ must be small enough so that $(1+s)^2 r <1$; this is the case with 
+   % $s=s^\star$, so that $(1+s^\star)^2 r = \frac{r+1}{2}<1$. 
+   % Therefore, we set $s=s^\star$, and, accordingly, $\theta=\theta^\star$. Then, for every $t\geq 0$,
+   % conditionally on $x^t$, $h^t$ and $(h_i^t)_{i=1}^n$,
+   % \begin{align*}
+   % \Exp{\Psi^{t+1}} 
+   % &\leq \max\big(1-\gamma\mu, {\frac{r+1}{2}}\big) \Psi^t.
+   % \end{align*}
+   where the left hand side can be interpreted as $\mathrm{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right]$, where $\hat{x}^{T}$ is chosen from $x^{0}, x^{1}, \ldots, x^{T-1}$ uniformly at random.
 
    \end{proof}
+
+   \subsubsection{Missing proof of Theorem~\ref{thm:main_pl}}
+   This proof is under \algname{EF-BF}~\cite{condat2022ef} Theorem.1. 
 \end{document}

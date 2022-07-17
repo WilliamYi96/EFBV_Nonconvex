@@ -163,61 +163,85 @@ where the control variates are updated as
 More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
 
 \section{Convergence Analysis for Non-Convex Setting}
-\subsection{Assumptions}
-\begin{assumption}[Smoothness and Lower Bound]\label{assump:smooth}
-   Every $f_i$ is $L_i$-smooth and $f$ is $L$-smooth. $f^{\inf}\eqdef \inf_{x\in \R^d} f(x) > -\infty$.
-\end{assumption}
+   \subsection{Assumptions}
+   \begin{assumption}[Smoothness and Lower Bound]\label{assump:smooth}
+      Every $f_i$ is $L_i$-smooth and $f$ is $L$-smooth. $f^{\inf}\eqdef \inf_{x\in \R^d} f(x) > -\infty$.
+   \end{assumption}
 
-Using Jensen's inequality, we have $L\leq \frac{1}{n}\sum_{i}L_i$. Let $\tilde{L}\eqdef (\frac{1}{n}\sum_{i=1}^2)^{1/2}$. Using the arithmetic-quadratic mean inequality, $\frac{1}{n}\sum_{i}L_i \leq \tilde{L}$.
+   Using Jensen's inequality, we have $L\leq \frac{1}{n}\sum_{i}L_i$. Let $\tilde{L}\eqdef (\frac{1}{n}\sum_{i=1}^2)^{1/2}$. Using the arithmetic-quadratic mean inequality, $\frac{1}{n}\sum_{i}L_i \leq \tilde{L}$.
 
-\begin{assumption}[Polyak-Łojasiewicz Condition]\label{assump:pl}
-   
-   There exists $\mu>0$ such that 
+   \begin{assumption}[Polyak-Łojasiewicz Condition]\label{assump:pl}
+      
+      There exists $\mu>0$ such that 
 
-   \begin{equation}
-      f(x) - f^{\inf} \leq \frac{1}{2\mu} \| \nabla f(x)\|^2, \quad \forall x\in\R^d
-   \end{equation}
-\end{assumption}
-
-\subsection{Main Theorem}
-\begin{theorem}[Linear Convergence in the non-convex setting]\label{thm:main}
-   Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$, choosing the stepsize 
-   
-   $$0< \gamma \leq \frac{1}{L + \tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.$$
-
-   For every $t\geq 0$, define the Lyapunov function
-
-   \begin{equation}
-      \Psi^{t}:=f\left(x^{t}\right)-f^{\inf}+\frac{\gamma}{2 \theta} \frac{1}{n} \sum_{i=1}^{n}\left\|\nabla f_{i}\left(x^{t}\right)-h_{i}^{t}\right\|^{2}
+      \begin{equation}
+         f(x) - f^{\inf} \leq \frac{1}{2\mu} \| \nabla f(x)\|^2, \quad \forall x\in\R^d
       \end{equation}
-   
-   Fix $T\geq 1$ and let $\hat{x}^T$ be chosen from the iterates $x^0, x^1, \cdots, x^{T-1}$ uniformly at random. Then 
+   \end{assumption}
 
-   \begin{equation}
-      \mathbb{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right] \leq \frac{2\left(f\left(x^{0}\right)-f^{\inf}\right)}{\gamma T}+\frac{\mathbb{E}\left[G^{0}\right]}{\theta T},
-      \end{equation}
+   \subsection{Main Theorem}
+   \begin{theorem}[Linear Convergence in the non-convex setting]\label{thm:main}
+      Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$, choosing the stepsize 
+      
+      $$0< \gamma \leq \frac{1}{L + \tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.$$
 
-   where $G^0=\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^0) - h_i^0}$.
-\end{theorem}
+      For every $t\geq 0$, define the Lyapunov function
 
-Similar to \algname{EF-BV}, we define the optimal values for the scaling parameters $\lambda, \nu$:
-$$
-\lambda^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega}, 1\right), \quad \nu^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega_{\mathrm{av}}}, 1\right) .
-$$
-Given $\lambda \in(0,1]$ and $\nu \in(0,1]$, we define for convenience
-$$
-r:=(1-\lambda+\lambda \eta)^{2}+\lambda^{2} \omega, \quad r_{\mathrm{av}}:=(1-\nu+\nu \eta)^{2}+\nu^{2} \omega_{\mathrm{av}} .
-$$
-as well as $s^{\star}:=\sqrt{\frac{1+r}{2 r}}-1$ and $\theta^{\star}:=s^{\star}\left(1+s^{\star}\right) \frac{r}{r_{\text {av }}}$.
+      \begin{equation}
+         \Psi^{t}:=f\left(x^{t}\right)-f^{\inf}+\frac{\gamma}{2 \theta} \frac{1}{n} \sum_{i=1}^{n}\left\|\nabla f_{i}\left(x^{t}\right)-h_{i}^{t}\right\|^{2}
+         \end{equation}
+      
+      Fix $T\geq 1$ and let $\hat{x}^T$ be chosen from the iterates $x^0, x^1, \cdots, x^{T-1}$ uniformly at random. Then 
 
-\begin{theorem}[Linear Convergence under PL condition]\label{thm:main_pl}
-   Suppose Assumption~\ref{assump:smooth} and PL assumption~\ref{assump:pl} are satisfied. Similarly, for every $t\geq 0$, 
+      \begin{equation}
+         \mathbb{E}\left[\left\|\nabla f\left(\hat{x}^{T}\right)\right\|^{2}\right] \leq \frac{2\left(f\left(x^{0}\right)-f^{\inf}\right)}{\gamma T}+\frac{\mathbb{E}\left[G^{0}\right]}{\theta T},
+         \end{equation}
 
-   \begin{equation}
-      \mathbb{E}\left[\Psi^{t}\right] \leq\left(\max \left(1-\gamma \mu, \frac{r+1}{2}\right)\right)^{t} \Psi^{0}.
-      \end{equation}
-\end{theorem}
+      where $G^0=\frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^0) - h_i^0}$.
+   \end{theorem}
 
+   Similar to \algname{EF-BV}, we define the optimal values for the scaling parameters $\lambda, \nu$:
+   $$
+   \lambda^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega}, 1\right), \quad \nu^{\star}:=\min \left(\frac{1-\eta}{(1-\eta)^{2}+\omega_{\mathrm{av}}}, 1\right) .
+   $$
+   Given $\lambda \in(0,1]$ and $\nu \in(0,1]$, we define for convenience
+   $$
+   r:=(1-\lambda+\lambda \eta)^{2}+\lambda^{2} \omega, \quad r_{\mathrm{av}}:=(1-\nu+\nu \eta)^{2}+\nu^{2} \omega_{\mathrm{av}} .
+   $$
+   as well as $s^{\star}:=\sqrt{\frac{1+r}{2 r}}-1$ and $\theta^{\star}:=s^{\star}\left(1+s^{\star}\right) \frac{r}{r_{\text {av }}}$.
+
+   \begin{theorem}[Linear Convergence under PL condition]\label{thm:main_pl}
+      Suppose Assumption~\ref{assump:smooth} and PL assumption~\ref{assump:pl} are satisfied. Similarly, for every $t\geq 0$, 
+
+      \begin{equation}
+         \mathbb{E}\left[\Psi^{t}\right] \leq\left(\max \left(1-\gamma \mu, \frac{r+1}{2}\right)\right)^{t} \Psi^{0}.
+         \end{equation}
+   \end{theorem}
+
+
+\section{Experiments}
+For our experiments on logistic regression and least squares, we use the dataset \texttt{mushrooms}, \texttt{phishing}, \texttt{a9a} and \texttt{w8a} from LibSVM~\cite{chang2011libsvm}. We randomly devide all datapoints into $n$ different workers, where each worker has $m$ datapoints. In our practice, we choose $m \in \{20, n_{\mathrm{all}}\}$, where $\mathrm{all}$ is the total datapoints in a given dataset. 
+
+\subsection{Logistic regression with nonconvex regularizer}
+We first consider the logistic regression optimization problem with nonconvex regularizer, 
+
+\begin{equation}
+   f(x)=\frac{1}{n} \sum_{i=1}^{n} \log \left(1+\exp \left(-y_{i} a_{i}^{\top} x\right)\right)+\lambda \sum_{j=1}^{d} \frac{x_{j}^{2}}{1+x_{j}^{2}}, 
+\end{equation}
+
+where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data, and $\lambda>0$ is the regularizer parameter. We used $\lambda=0.1$ in all experiments.
+
+\subsection{Least squares}
+Here we consider the function that satisfies the PL condition. We use the standard least squares objective function, 
+
+\begin{equation}
+   f(x)=\frac{1}{n} \sum_{i=1}^{n}\left(a_{i}^{\top} x-b_{i}\right)^{2},
+\end{equation}
+
+where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data.
+
+\subsection{Deep neural networks}
+We also consider the deep neural networks experiments. To make fair comparison, we choose CIFAR-10 as our target dataset, which contains 50, 000 images for training and 10,000 images for testing. We randomly split the whole training set and testing set into n=5 equal part. Similar to \algname{EF21}~\cite{ric21}, we consider models including ResNet18 and VGG11. 
 % \subsection{Algorithm Description}
 % \begin{algorithm}[!htbp]
 % \caption{EF-BV for single node}\label{alg:efbv_1}
@@ -238,6 +262,8 @@ as well as $s^{\star}:=\sqrt{\frac{1+r}{2 r}}-1$ and $\theta^{\star}:=s^{\star}\
 
 \newpage
 \appendix
+
+
 \section{Appendix}
 \subsection{Missing proofs}
 \subsubsection{Missing proof of Theorem~\ref{thm:main}}
@@ -409,4 +435,21 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
 
    \subsubsection{Missing proof of Theorem~\ref{thm:main_pl}}
    This proof is under \algname{EF-BF}~\cite{condat2022ef} Theorem.1. 
+
+   \section{EF-BV Experiments Revisit}
+   In thi section, we revisit the experiments in \algname{EF-BV} on top of the refactored code. We fixed a few minor bugs.
+
+   For all experiments, we consider the logistic regression with convex regularizer, 
+
+   \begin{equation}
+      f(x)=\frac{1}{n} \sum_{i=1}^{n} \log \left(1+\exp \left(-y_{i} a_{i}^{\top} x\right)\right)+ \frac{\lambda}{2}\sqnorm{x},
+   \end{equation}
+   
+   where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data, and $\lambda>0$ is the regularizer parameter. We used $\lambda=0.1$ in all experiments.
+
+   For baselines, since \algname{EF21}~\cite{ric21} outperforms all other methods, we only compare our method with \algname{EF21}. 
+
+   % \subsection{Ablations with CompK compressor}
+
+   % \subsection{Ablations with MixK compressor}
 \end{document}

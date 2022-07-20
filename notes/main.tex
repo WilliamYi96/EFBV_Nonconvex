@@ -96,7 +96,8 @@
 
 
 \begin{abstract}  
-In this project, we first extend EF-BV~\cite{condat2022ef} to non-convex setting and consider the special case under PL inequality. Then we extend EF-BV to pratical federated learning scenarios including variance reduction, partial participation, bidirectional compression.  
+In this project, we first extend EF-BV~\cite{condat2022ef} to non-convex setting and consider the special case under PL inequality. 
+% Then we extend EF-BV to pratical federated learning scenarios including partial participation. 
 \end{abstract}
 
 \tableofcontents
@@ -180,7 +181,7 @@ More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
    \end{assumption}
 
    \subsection{Main Theorem}
-   \begin{theorem}[Linear Convergence in the non-convex setting]\label{thm:main}
+   \begin{theorem}[Linear convergence in the non-convex setting]\label{thm:main}
       Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$, choosing the stepsize 
       
       $$0< \gamma \leq \frac{1}{L + \tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.$$
@@ -210,7 +211,7 @@ More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
    $$
    as well as $s^{\star}:=\sqrt{\frac{1+r}{2 r}}-1$ and $\theta^{\star}:=s^{\star}\left(1+s^{\star}\right) \frac{r}{r_{\text {av }}}$.
 
-   \begin{theorem}[Linear Convergence under PL condition]\label{thm:main_pl}
+   \begin{theorem}[Linear convergence under PL condition]\label{thm:main_pl}
       Suppose Assumption~\ref{assump:smooth} and PL assumption~\ref{assump:pl} are satisfied. Similarly, for every $t\geq 0$, 
 
       \begin{equation}
@@ -218,6 +219,17 @@ More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
          \end{equation}
    \end{theorem}
 
+% \section{Convergence Analysis under Partial Participation}
+% We consider the partial participation scenario of general compressors. Here we define our method \algname{EFBV-PP}. This algorithm is easy to describle, which select a subset of nodes computing the gradient for each round. 
+
+% \subsection{Main Theorem}
+% \begin{theorem}[Linear convergence under partial participation]\label{thm:pp}
+   
+% \end{theorem}
+
+% \begin{theorem}[Linear convergence under PL condition]\label{thm:pp_pl}
+   
+% \end{theorem}
 
 \section{Experiments}
 For our experiments on logistic regression and least squares, we use the dataset \texttt{mushrooms}, \texttt{phishing}, \texttt{a9a} and \texttt{w8a} from LibSVM~\cite{chang2011libsvm}. We randomly devide all datapoints into $n$ different workers, where each worker has $m$ datapoints. In our practice, we choose $m \in \{20, n_{\mathrm{all}}\}$, where $\mathrm{all}$ is the total datapoints in a given dataset. 
@@ -231,7 +243,8 @@ We first consider the logistic regression optimization problem with nonconvex re
 
 where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data, and $\lambda>0$ is the regularizer parameter. We used $\lambda=0.1$ in all experiments.
 
-\subsection{Least squares}
+\subsection{Other Options}
+\subsubsection{Least squares}
 Here we consider the function that satisfies the PL condition. We use the standard least squares objective function, 
 
 \begin{equation}
@@ -240,8 +253,12 @@ Here we consider the function that satisfies the PL condition. We use the standa
 
 where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data.
 
-\subsection{Deep neural networks}
+We can extend to least squares if we want later. 
+
+\subsubsection{Deep neural networks}
 We also consider the deep neural networks experiments. To make fair comparison, we choose CIFAR-10 as our target dataset, which contains 50, 000 images for training and 10,000 images for testing. We randomly split the whole training set and testing set into n=5 equal part. Similar to \algname{EF21}~\cite{ric21}, we consider models including ResNet18 and VGG11. 
+
+From \algname{EF21}~\cite{ric21} Fig.13, 14 and 15, we found \algname{EF21} use tuned stepsizes. However, the advantage of \algname{EF-BV} is that we have much larger stepsize under centain conditions. So here I pend the comparison with \algname{EF21} on deep neural networks. 
 % \subsection{Algorithm Description}
 % \begin{algorithm}[!htbp]
 % \caption{EF-BV for single node}\label{alg:efbv_1}

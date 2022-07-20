@@ -1,1 +1,1 @@
-Currently, the code is available at https://github.com/WilliamYi96/EFBV/blob/main/EF22/Logistic_regression/compTRk2.py.
+Currently, the code is available at https://github.com/WilliamYi96/EFBV/blob/main/EF22/Logistic_regression/compTRk2.py. 

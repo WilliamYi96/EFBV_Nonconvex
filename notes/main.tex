@@ -181,8 +181,21 @@ More details could refer to \algname{EF-BV}~\cite{condat2022ef} Sec. 3.
    \end{assumption}
 
    \subsection{Main Theorem}
+   \subsubsection{Definitions of Key Symbols}
+   Here is the quick summary of defined key symbols. 
+   \begin{equation*}
+      \begin{aligned}
+         \lambda &\eqdef \min \left(\frac{1-\eta}{(1-\eta)^2 + \omega}, 1\right)\\
+         \nu &\eqdef \min \left(\frac{1-\eta}{(1-\eta)^2 + \oma}, 1\right)\\
+         r &\eqdef (1 - \lambda + \lambda \eta)^2 + \lambda^2 \omega\\
+         r_{\mathrm{av}} &\eqdef (1 - \nu + \nu \eta)^2 + \nu^2 \oma\\
+         s &\eqdef \sqrt{\frac{1+r}{2r}}-1\\
+         \theta &\eqdef s(1+s)\frac{r}{r_{\mathrm{av}}}.
+      \end{aligned}   
+   \end{equation*} 
+
    \begin{theorem}[Linear convergence in the non-convex setting]\label{thm:main}
-      Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$, choosing the stepsize 
+      Suppose Assumption~\ref{assump:smooth} is satisfied. Suppose $\nu\in (0, 1], \lambda\in (0,1]$ is such that $r < 1$, choosing the stepsize 
       
       $$0< \gamma \leq \frac{1}{L + \tilde{L}\sqrt{\frac{r_{\mathrm{av}}}{r}}\frac{1}{s}}.$$
 
@@ -241,7 +254,78 @@ We first consider the logistic regression optimization problem with nonconvex re
    f(x)=\frac{1}{n} \sum_{i=1}^{n} \log \left(1+\exp \left(-y_{i} a_{i}^{\top} x\right)\right)+\lambda \sum_{j=1}^{d} \frac{x_{j}^{2}}{1+x_{j}^{2}}, 
 \end{equation}
 
-where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data, and $\lambda>0$ is the regularizer parameter. We used $\lambda=0.1$ in all experiments.
+where $a_{i} \in \mathbb{R}^{d}, y_{i} \in\{-1,1\}$ are the training data, and $\lambda>0$ is the regularizer parameter. We used $\lambda=0.1$ in all experiments. We present the results in Fig.~\ref{13}.
+
+\begin{figure}[!htbp]
+   \centering
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}[b]{0.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf}
+   \end{subfigure}
+   % \hfill
+   % \begin{subfigure}[b]{0.32\textwidth}
+   %    \centering
+   %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_1_w8a_20workers_3000K_1000_w8a_1_1_logreg_diff.pdf}
+   %    % \caption{no partial participation}
+   %    \label{010}
+   % \end{subfigure}
+   % \hfill
+   % \begin{subfigure}[b]{0.32\textwidth}
+   %    \centering
+   %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_1_w8a_20workers_3000K_1000_w8a_1_2_logreg_diff.pdf}
+   %    % \caption{no partial participation}
+   %    \label{011}
+   % \end{subfigure}
+   % \hfill
+   % \begin{subfigure}[b]{0.32\textwidth}
+   %    \centering
+   %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_2_w8a_20workers_3000K_1000_w8a_1_2_logreg_diff.pdf}
+   %    % \caption{$\tau=1, lrr=0.1, pr=0.2$}
+   %    \label{012}
+   % \end{subfigure}
+      \caption{Comparison between \algname{EF21} and \algname{EF-BV} in the non-convex setting. We see \algname{EF-BV} outperforms \algname{EF21} on all datasets.}
+      \label{13}
+\end{figure}
 
 \subsection{Other Options}
 \subsubsection{Least squares}
@@ -397,8 +481,8 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
    \Big) \frac{1}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}\label{eqq1}\\
    &\quad+ \left(\frac{ L}{2}-\frac{1}{2\gamma}+\frac{\gamma}{2\theta}(1+s^{-1})\tilde{L}^2\right)\!\Exp{\sqnorm{x^{t+1}-x^t}}.\notag
    \end{align}
-   Making use of $r$ and $r_{\mathrm{av}}$ and setting $\theta = s(1+s)\frac{r}{r_{\mathrm{av}}}$, 
-   we can rewrite the above equation as:
+   
+   Let $r \eqdef (1 - \lambda + \lambda \eta)^2 + \lambda^2 \omega, r_{\mathrm{av}}\eqdef (1 - \nu + \nu\eta)^2 + \nu^2 \oma$. Set $\theta = s(1+s)\frac{r}{r_{\mathrm{av}}}$, we can rewrite the above equation as:
    \begin{align*}
    \Exp{\Psi^{t+1}} &\leq \Exp{f(x^t) - f^{\inf}} - \frac{\gamma}{2} \Exp{\sqnorm{\nabla f(x^t)}} +\frac{ \gamma }{2\theta}\Big( \theta r_{\mathrm{av}}
    +(1+s)r
@@ -422,14 +506,14 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
    \frac{r}{n}\sum_{i=1}^n \sqnorm{\nabla f_i(x^t)-h_i^{t}}.\\
    \end{align*}
 
-   Using the Tower property, we have,
+   Since we choose $\lambda, \nu$ to make sure $r< 1$ and we choose $s = \sqrt{\frac{1+r}{2r}} - 1$, we have $(1+s)^2 r = \frac{1 + r}{2} < 1$. Then using the Tower property, we have,
    \begin{align*}
       \Exp{\Psi^{t+1}} \leq \Exp{\Psi^t} - \frac{\gamma}{2}\Exp{\sqnorm{\nabla f(x^t)}}.
    \end{align*}
 
    By summing up inequalities for $t=0, \cdots, T-1$, we get 
    \begin{align*}
-      0 \leq \Exp{\Psi^(T)} \leq \Exp{\Psi^0} - \frac{\gamma}{2} \sum_{t=0}^{T-1} \Exp{\sqnorm{\nabla f(x^t)}}.
+      0 \leq \Exp{\Psi(T)} \leq \Exp{\Psi^0} - \frac{\gamma}{2} \sum_{t=0}^{T-1} \Exp{\sqnorm{\nabla f(x^t)}}.
    \end{align*}
 
    % We define $\detal^t \eqdef \Exp{f(x^t) - f^{\inf}}, s^t \eqdef \Exp{}$  
@@ -469,4 +553,123 @@ $g_i^t = h_i^t + \nu \C(\nabla f_i (x^t) - h_i^t); \quad h_i^{t+1} = h_i^t + \la
    % \subsection{Ablations with CompK compressor}
 
    % \subsection{Ablations with MixK compressor}
+
+
+   \begin{figure}[!htbp]
+      \centering
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{001}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{002}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf}
+         % \caption{$\tau=1, lrr=0.1, pr=0.2$}
+         \label{003}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{004}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{005}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf}
+         % \caption{$\tau=1, lrr=0.1, pr=0.2$}
+         \label{006}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{007}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf}
+         % \caption{no partial participation}
+         \label{008}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf}
+         % \caption{$\tau=1, lrr=0.1, pr=0.2$}
+         \label{009}
+      \end{subfigure}
+      % \hfill
+      % \begin{subfigure}[b]{0.32\textwidth}
+      %    \centering
+      %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_1_w8a_20workers_3000K_1000_w8a_1_1_logreg_diff.pdf}
+      %    % \caption{no partial participation}
+      %    \label{010}
+      % \end{subfigure}
+      % \hfill
+      % \begin{subfigure}[b]{0.32\textwidth}
+      %    \centering
+      %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_1_w8a_20workers_3000K_1000_w8a_1_2_logreg_diff.pdf}
+      %    % \caption{no partial participation}
+      %    \label{011}
+      % \end{subfigure}
+      % \hfill
+      % \begin{subfigure}[b]{0.32\textwidth}
+      %    \centering
+      %    \includegraphics[width=\textwidth]{img/w8a/CompK_150_2_w8a_20workers_3000K_1000_w8a_1_2_logreg_diff.pdf}
+      %    % \caption{$\tau=1, lrr=0.1, pr=0.2$}
+      %    \label{012}
+      % \end{subfigure}
+         \caption{Comparison between \algname{EF21} and \algname{EF-BV} in the convex setting. We see \algname{EF-BV} outperforms \algname{EF21} on all datasets.}
+         \label{11}
+   \end{figure}
+
+   Next, we consider smaller number of workers to be 20 or 50. The results are shown in Fig.~\ref{12}.
+
+   \begin{figure}[!htbp]
+      \centering
+      \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf}
+      \end{subfigure}
+      \caption{20 workers.}
+      \hfill
+      \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf}
+      \end{subfigure}
+      \caption{50 workers.}
+         \caption{Comparison between \algname{EF21} and \algname{EF-BV} in the convex setting with smaller number of workers. We see the difference between \algname{EF-BV} and \algname{EF21} is smaller, which is align with our theory.}
+         \label{12}
+   \end{figure}
 \end{document}

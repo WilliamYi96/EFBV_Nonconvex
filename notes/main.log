@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.1.24)  20 JUL 2022 09:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.1.24)  26 JUL 2022 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,53 +712,165 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 123.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
-) [2] [3] (./main.bbl) [4]
-Overfull \hbox (16.25838pt too wide) detected at line 306
+) [2] [3]
+<img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf, id=168, 969.95627pt x 671.29861pt>
+File: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf  used on input line 263.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf, id=169, 915.35231pt x 671.29861pt>
+File: img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf  used on input line 268.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf, id=170, 915.35231pt x 671.29861pt>
+File: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf  used on input line 273.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf, id=171, 969.95627pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf  used on input line 278.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf, id=172, 969.95627pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf  used on input line 283.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf, id=173, 915.35231pt x 671.29861pt>
+File: img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf  used on input line 288.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf, id=174, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf  used on input line 293.
+(pdftex.def)             Requested size: 127.1981pt x 91.47157pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf, id=175, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf  used on input line 298.
+(pdftex.def)             Requested size: 127.1981pt x 91.47157pt.
+<img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf, id=176, 954.83704pt x 671.29861pt>
+File: img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf  used on input line 303.
+(pdftex.def)             Requested size: 127.1981pt x 89.42294pt.
+ (./main.bbl [4]) [5 <./img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_nonconv.pdf> <./img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_nonconv.pdf> <./img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_nonconv.pdf> <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_nonconv.pdf> <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_nonconv.pdf> <./img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_nonconv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_nonconv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_nonconv.pdf> <./img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_nonconv.pdf>]
+Overfull \hbox (16.25838pt too wide) detected at line 390
 [][][][][]
  []
 
 
-Overfull \hbox (16.11438pt too wide) detected at line 318
+Overfull \hbox (16.11438pt too wide) detected at line 402
 [][][][][]
  []
 
 
-Overfull \hbox (3.33885pt too wide) detected at line 322
+Overfull \hbox (3.33885pt too wide) detected at line 406
 []
  []
 
-[5]
-Overfull \hbox (21.67809pt too wide) detected at line 340
-[]
- []
-
-
-Overfull \hbox (19.66772pt too wide) detected at line 363
+[6]
+Overfull \hbox (21.67809pt too wide) detected at line 424
 []
  []
 
 
-Overfull \hbox (30.64528pt too wide) detected at line 399
+Overfull \hbox (19.66772pt too wide) detected at line 447
 []
  []
 
-[6] [7] [8] (./main.aux)
+
+Overfull \hbox (30.64528pt too wide) detected at line 483
+[]
+ []
+
+[7] [8]
+<img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf, id=653, 969.95627pt x 671.29861pt>
+File: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf  used on input line 562.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf, id=654, 915.35231pt x 671.29861pt>
+File: img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf  used on input line 569.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf, id=655, 915.35231pt x 671.29861pt>
+File: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf  used on input line 576.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf, id=656, 969.95627pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf  used on input line 583.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf, id=657, 969.95627pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf  used on input line 590.
+(pdftex.def)             Requested size: 127.1981pt x 88.02988pt.
+<img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf, id=658, 915.35231pt x 671.29861pt>
+File: img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf  used on input line 597.
+(pdftex.def)             Requested size: 127.1981pt x 93.28462pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf, id=659, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf  used on input line 604.
+(pdftex.def)             Requested size: 127.1981pt x 91.47157pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf, id=660, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf  used on input line 611.
+(pdftex.def)             Requested size: 127.1981pt x 91.47157pt.
+<img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf, id=661, 954.83704pt x 671.29861pt>
+File: img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf  used on input line 618.
+(pdftex.def)             Requested size: 127.1981pt x 89.42294pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf, id=663, 971.6401pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf  used on input line 653.
+(pdftex.def)             Requested size: 190.79109pt x 131.80922pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf, id=664, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf  used on input line 658.
+(pdftex.def)             Requested size: 190.79109pt x 137.20737pt.
+<img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf, id=665, 971.6401pt x 671.29861pt>
+File: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf  used on input line 664.
+(pdftex.def)             Requested size: 190.79109pt x 131.80922pt.
+<img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf, id=666, 933.4198pt x 671.29861pt>
+File: img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf Graphic file (type pdf)
+<use img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf>
+Package pdftex.def Info: img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf  used on input line 669.
+(pdftex.def)             Requested size: 190.79109pt x 137.20737pt.
+ [9 <./img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_1_logreg_diff_conv.pdf> <./img/a9a/CompK_61_2_a9a_8124workers_3000K_32561_a9a_61_2_1_1_logreg_diff_conv.pdf> <./img/a9a/CompK_61_1_a9a_8124workers_3000K_32561_a9a_61_1_1_2_logreg_diff_conv.pdf> <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_1_logreg_diff_conv.pdf> <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_8124_mushrooms_56_1_1_2_logreg_diff_conv.pdf> <./img/mushrooms/CompK_56_2_mushrooms_8124workers_3000K_8124_mushrooms_56_2_1_1_logreg_diff_conv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_1_logreg_diff_conv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_11055_phishing_34_1_1_2_logreg_diff_conv.pdf> <./img/phishing/CompK_34_2_phishing_8124workers_3000K_11055_phishing_34_2_1_1_logreg_diff_conv.pdf>] [10 <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_20_mushrooms_56_1_1_1_logreg_diff_conv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_20_phishing_34_1_1_1_logreg_diff_conv.pdf> <./img/mushrooms/CompK_56_1_mushrooms_8124workers_3000K_50_mushrooms_56_1_1_1_logreg_diff_conv.pdf> <./img/phishing/CompK_34_1_phishing_8124workers_3000K_50_phishing_34_1_1_1_logreg_diff_conv.pdf>] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 06D6A6F04BA9F6311FB0FB0641B6CAF9;2870.
+(rerunfilecheck)             Checksum: CAA6BBFD74B845FB7B597A8D575BC4A2;3077.
  ) 
 Here is how much of TeX's memory you used:
- 26975 strings out of 478287
- 504468 string characters out of 5846764
- 794452 words of memory out of 5000000
- 44630 multiletter control sequences out of 15000+600000
+ 27179 strings out of 478287
+ 520230 string characters out of 5846764
+ 796179 words of memory out of 5000000
+ 44803 multiletter control sequences out of 15000+600000
  495861 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,15n,104p,555b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,15n,104p,555b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 197280 bytes).
+Output written on main.pdf (10 pages, 511602 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
- 255 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1371 PDF objects out of 1440 (max. 8388607)
+ 470 compressed objects within 5 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 275 words of extra memory for PDF output out of 10000 (max. 10000000)
 
